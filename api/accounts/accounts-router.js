@@ -1,23 +1,36 @@
+const express = require('express');
+const Account = require('./accounts-model');
+
 const router = require('express').Router()
 
-router.get('/', (req, res, next) => {
+router.get('/', async (req, res, next) => {
   // DO YOUR MAGIC
+  const data = await Account.getAll();
+  res.json(data);
 })
 
-router.get('/:id', (req, res, next) => {
+router.get('/:id', async (req, res, next) => {
   // DO YOUR MAGIC
+  const data = await Account.getById(req.params.id);
+  res.json(data);
 })
 
-router.post('/', (req, res, next) => {
+router.post('/', async (req, res, next) => {
   // DO YOUR MAGIC
+  const data = await Account.create(req.body);
+  res.json(data);
 })
 
-router.put('/:id', (req, res, next) => {
+router.put('/:id', async (req, res, next) => {
   // DO YOUR MAGIC
+  const data = await Account.updateById(req.params.id, req.body)
+  res.json(data);
 });
 
-router.delete('/:id', (req, res, next) => {
+router.delete('/:id', async (req, res, next) => {
   // DO YOUR MAGIC
+  const data = await Account.deleteById(req.params.id);
+  res.json(data);
 })
 
 router.use((err, req, res, next) => { // eslint-disable-line
